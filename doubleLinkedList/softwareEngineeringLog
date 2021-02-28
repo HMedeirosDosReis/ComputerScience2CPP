@@ -1,0 +1,76 @@
+Henrique Medeiros dos Reis
+
+March/29/2020
+	Started project Number three, following the instructions that were given in the handout.
+	
+	1st Error, tried to use de operator += with two arguments, one being a pointer and the other one being the value I wanted to add, in the proccess of fixing it. I was thinking about using a similar method to add after, but what I actually need to do with this method is only add in the end of the list, which will make it less complicate.
+	
+	Fixed, just assumed to add the node to the tail and update the tail.
+	
+	1st Problem with the overload for the = operator, I dont know how to start it, I will skip this one for now and comeback later.
+	2nd Problem, overloading operator -=, segmentation fault, not sure what the problem is. I followed the path from the lecture pdf from canvas to delete a node
+	
+	end of the first day, everything is compiling.
+	
+	STILL NEEDS TESTING: 
+		operator==
+		operator+
+		operator/
+		operator-
+		
+	ERRORS:
+		operator-=
+		operator=
+
+March/31/2020
+	Started to work again on project 3. objectives: write operator= and operator-=, start testing
+	
+	After testing and debbuging the operator/ I started to understand better, I was using all the comparisons to run until getting to the tail, but in my implementation, the tail is still a value, the tail->next() is not, so I need to check for NULL, not for tail.
+	
+	TESTED AND WORKING:
+			constructors
+			clear()
+			size()
+			contains()
+			operator/
+			operator+=
+			operator<<
+	NEEDS REEWRITING:
+			operator==
+			operator+
+			operator-
+			operator=
+			operator-=
+		All of these needs to be in the same way of thinking of operator/
+		
+April/1/2020
+	Started to reewrite the methods by folowing the same way of thinking
+	First attempts of testing of the day gave me some different errors.
+
+	TESTED AND WORKING:
+			constructors
+			clear()
+			size()
+			contains()
+			operator/
+			operator+=
+			operator<<
+			operator==
+			operator+= 
+			operator+
+			operator- 
+			find()
+	NEEDS REEWRITING:
+			operator-= (still problems trying to figure out how to delete, find, not sure where the error is)			I decided to delete everything and start over in the next day. Both the remove() and the operator-= 
+			operator= 
+
+April/2/2020
+	Started to look over operator-= again. Problems fixed, it looks like it is working correctly. I will start working on operator =
+	In order to make the operator= work I need a way to return a pointer to "this". 
+	Instead of trying to create a new set and setting "this" equal to this new one, it will be easier to manipulate "this" the only thing is that i will not be able to call "this"+="something" i will need to write another method that does exactly the same thing in order to acheive this.
+	
+	Everything tested and working, now just need to comment and put the bigO notations
+
+
+
+
