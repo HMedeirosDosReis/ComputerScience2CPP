@@ -1,0 +1,30 @@
+Henrique Medeiros dos Reis
+
+April/17/2020
+	Started project Number four, following the instructions that were given in the handout.
+	First thinking about what classes would I need and what type of files. I will preffer to still do it without templates, and I will probably need 3 classes, one for the tree, one for the nodes and one for the books. Then start thinking about which methods my classes will need.
+	Started with the book class.
+		Book methods: constructor, methods that return the data of the object, and methods that will change the number of searches, number of rented times and if this is avaible.
+		
+	Started building the node for my tree. This is not a hard part. I builded the main parts, if more things are needed, add after. Now I will start to do the Tree.
+	Tree class will need methods that do: add a book to the tree, print the whole tree, different kinds of searching, delete a book and checkout/return a book.
+	
+	End of the first day. First toughts made and going well, I believe the tree, nodes and the book classes are almost ready, all classes are compiling. I still need to test everything and build the main
+	
+April/18/2020
+	Started working in the main. First I will write the if statments with the menu and then try to put together with the methods created in other classes
+	All of them need testing and I am having doubs on how to print the tree.
+	I believe I have some structure problems in the tree, might need to check that before testing.
+	
+April/21/2020
+	My problem is on the add book method.
+	Fixed that problem and started testing. Options (D), (S), (M) are having segmentation problems, probrably some problem in the framework as well, need to review what is happening. Options (T), (A), (C), and (R) are having peoblems with the logic, I need to review those as well. The problem in these ones seems to be that I am not visiting every node.
+	Problem with the (D) option solved, the problem was not stopping when reaching a null pointer. Also, I needed to make sure that the node exists before trying to use it.
+
+April/22/2020
+	The logic problems turned out to be that I was calling the methods out of a copy from the contents, not the actual contents of the book, if I change this, most of the problems will be solved
+	Problems that still ened to be solved: my instance variables for the book class are not changing, and when searching by author or title it is not going through all the tree.
+	
+April/24/2020
+	Solve problems of searching using recursion, and change the book node to hold a pointer instead of the onject will probably be the solution for the problems
+	Solved and tested every method, now just need to do the comments!
