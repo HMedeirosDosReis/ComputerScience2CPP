@@ -1,0 +1,35 @@
+	Henrique Medeiros Dos Reis
+	Mar 1 2020
+
+	I developed and tested this code using Linux Fedora.
+	
+	This project is an implementation of a set of strings, this supports the majority of operators needed. 
+	
+	In order to compile this project I just used the following pattern
+	inside a Makefile using the project2.cpp provided on Canvas.
+	{
+		DBG = -g
+		OPTS = $(DBG) -Wall -ansi -pedantic
+		CC = g++ -c $(OPTS)
+		LN = g++ -Wall
+		OBJS = StringSet.o project2.o
+		
+		runMe: $(OBJS)
+			$(LN) -o runMe $(OBJS)
+
+
+		StringSet.o: StringSet.cpp StringSet.h
+			$(CC) StringSet.cpp
+	
+		project2.o: project2.cpp StringSet.h
+			$(CC) project2.cpp
+
+		clean: 
+			/bin/rm ./runMe
+	}
+	My program does not have any bugs.
+	I aproched the project by first writing the .h file, and find out what would
+	I need and parameters, return types and goals of each method. Then I started
+	coding method by methos starting with the methods that I could need to use 
+	in other methods before. Finally I started to run and test to see what the code
+	was actually doing and debug in order to acheive the desired goal.
