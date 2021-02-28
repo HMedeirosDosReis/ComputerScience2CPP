@@ -1,0 +1,21 @@
+Henrique Medeiros dos Reis
+
+May/1/2020
+	Started final project, following the instructions that were given in the handout.
+	First start to think about how to create an array of lists where all of this will be templeted. I will start by building the HashTable class and think about what I will need to use in order to handle the methods that are needed.
+	After building the .h file, I will start writing the insert method, following the instructions for what this method needs to do.
+	I wrote some of the methods in the .cct file, the first problem I encountered is to how to convert an iterator to a pointer, as it is now I am returning a reference, but I am not sure that this will work. I will keep this as is now and test a lot, since most all my methods are depending on the find method, which is using this return with a reference. 
+	I still need to write the print and the operator<< methods before start to test and debug this. 
+	
+May/2/2020
+	I will start today by writing the print and operator<< methods, also I will need to add some instance varibles to my HashTable class, since in the printing it is asking some more things. Instead of simply using _N for the maximum size and a list variable inside of each piece of the array, I will also need a _n variable that will control the number of value curently in the table.
+	It looks like everything but the empty numbers are correct, I just tested with integers until now. From now on I need to test with other objects and fix the empty part.
+	It turned out that I was doing the wrong divission, instead of dividing _N by emptySpaces, I needed to divide emptySpaces by _N. Also, I need to fix my remove method and incorporate the variable _n to it
+	Now everything is working perfectly for Integers, tomorrow I will start testing with the book objects, I had problems with it at the first moment because of the methods that are constant in the book class and are being called by non constant methods inside my program.
+
+May/3/2020
+	I tested everything with different classes, but I coudl not make it work with the class that the professor passed. However my code looks right and it is working in different classes. I will ask for help to fix that.
+	It turned out that there were two problems, the first one was that I did not have a .h file in my folder. And the seccond one was the way I was compiling, I was trying to compile only the main.cpp file, when i actually needed to compile both together with the call "g++ -Wall -ansi -pedantic main.cpp Book.cpp".
+	In order to finish this project, I need to write comments and check a little more.
+May/5/2020 
+	Done

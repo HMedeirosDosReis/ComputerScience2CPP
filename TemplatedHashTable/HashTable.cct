@@ -1,0 +1,158 @@
+#include "HashTable.h" 
+#include <iostream>
+
+using namespace std;
+/*
+	Templated class for a HashTable, this hash table deals with colision in 
+	a chain based manner.
+*/
+/*
+	Insert Method. It requires a object as a parameter. It will give a new 
+	position for thie object in the table.
+	It returns a pointer to where in the table this object is located.
+*/
+template <class T>
+T*  
+HashTable<T>::insert( T &newValue)
+{
+	//Search if the value is already in the table. Since this table does not allow duplicates
+	if(find(newValue)!=NULL)
+	{// return a pointer to where the object is
+		return find(newValue);
+	}
+	//if I get here, newValue is not on the table
+	int index = newValue.hash();//generate an int value based on the object  
+	index = compress(index);//this will get the hash value from the object and compress this to 
+							//the range of the array
+	
+	_table[index].push_front(newValue);//add the object to the list of that index 
+	_n++;//increment the number of objets that are in the table
+	return find(newValue);//return a pointer to where the object is
+	
+}
+/*
+	Templated Method to remove a object from the table. It requires a object as
+	a parameter and return a bool, which will be true if the object was removed
+	and false if the object was not in the table
+*/
+template <class T>
+bool  
+HashTable<T>::remove( T &value)
+{
+	//check if the object is in the table
+	if(find(value)==NULL)
+		return false;//if it is not, return false
+	int index = value.hash();//generate an int value based on the object 
+	index = compress(index);//this will get the hash value from the object and compress this to 
+							//the range of the array
+	_table[index].remove(value);//remove the value from the list that is in the index of the array
+	_n--;//decrement the number of objects that are in the table
+	return true;//if I get here, I deleted the object, return true
+}
+/*
+	Templated Method to find a object in the table. It needs a onject as a parameter
+	and return a pointer to where the object is. In case the object is not in the table,
+	return NULL.
+*/
+template <class T>
+T*  
+HashTable<T>::find( T &value) const
+{
+	int index = value.hash();//generate an int value based on the object 
+	index = compress(index);//this will get the hash value from the object and compress this to 
+							//the range of the array
+	//Loop through the list in the index of the array
+	for(typename list<T>::iterator tli = _table[index].begin(); tli!=_table[index].end(); tli++)
+	{
+		//if the object that we are searching is the same as the object in this list
+		//return the object
+		if(value == *tli)
+			return &*tli;
+	}
+	//if I get here, I did not found the object
+	return NULL;
+	
+}
+/*
+	Method that will compress any integer into a number in the range 
+	of the array size. It requires an integer that will be compressed and
+	return a compressed integer. 
+*/
+template <class T>
+int
+HashTable<T>::compress(int toComp) const
+{
+	//return the modulo of the integer passed as a parameter
+	return toComp%_N;
+}
+
+/*
+	Method used to check how many empty spaces are in the array, then it 
+	return the percentage of empty spaces.
+*/
+template <class T>
+int
+HashTable<T>::isEmpty() const
+{
+	int emptySpaces = 0;//start the number of empty spaces at 0
+	for(int i=0;i<_N;i++)//loop through the array
+	{	// In case the list size in the array index is equal to 0, increment empty spaces by 1
+		if(_table[i].size()==0){emptySpaces++;}
+	}
+	emptySpaces = ((double)emptySpaces/_N)*100;// do the operation in order to get the percentage
+	return emptySpaces;//return the percentage
+}
+/*
+	Method used to see what is the maximum number of chains in the table.
+	It returns the biggest number of chains in any array index.
+*/
+template <class T>
+int
+HashTable<T>::maxChain() const
+{
+	int max=0;//start the number of chains at 0
+	for(int i=0;i<_N;i++)//loop through the array
+	{	//if the size of the table in this index is bigger than the maximum size until now
+		//update the maximum size to be the size of this list
+		if((int)_table[i].size()>=max){max=_table[i].size();}
+	}
+	return max;//return the maximum number of chains
+}
+/*
+	Templated Method to print a Hash Table, it requires a ostream as a parameter, 
+	and return one as well.
+*/
+template <class T>
+ostream& 
+HashTable<T>::print(ostream& os) const
+{	//loop through the array
+	for(int i=0;i<_N;i++)
+	{	//in case the list is not empty
+		if(_table[i].empty()){}
+		else
+		{//loop through the list and print every element of the lsit
+			for(typename list<T>::iterator tli = _table[i].begin(); tli!=_table[i].end(); tli++)
+			{
+				os<<*tli<<endl;
+			}
+		}
+	}
+	//print the general information of the table
+	os<<"N: "<< _N<<endl;
+	os<<"n: "<< _n<<endl;
+	os<<"Alpha: "<< (double)_n/_N<<endl;
+	os<<"Empty: "<< isEmpty()<<"%"<<endl;
+	os<<"Max Chain: "<< maxChain()<<endl;
+	return os;//return the ostream
+}
+/*
+	Overloaded operator << for the templated HashTable class.
+	It requires a HashTable and an ostream as parameter, and 
+	it will return a ostream.
+	This method simply call the print method
+*/
+template<class T>
+std::ostream& operator<< (std::ostream &os, const HashTable<T> &myTable)
+{
+	return myTable.print(os);
+}
